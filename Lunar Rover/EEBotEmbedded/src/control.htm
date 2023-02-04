@@ -1,0 +1,39 @@
+<html>
+<head>
+    <style>
+.btn {
+            background-color: inherit;
+            padding: 14px 28px;
+            font-size: 16px;
+        }
+.btn:hover {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn" onclick="ledOn()">LED On</button>
+    <button class="btn" onclick="ledOff()">LED Off</button>
+    <br>LED STATE: <span id="state">OFF</span>
+    <button class="btn" onclick="motorFW()">Drive Forward</button>
+    <button class="btn" onclick="motorRV()">Drive Backward</button>
+    <button class="btn" onclick="motorSL()">Steer Left</button>
+    <button class="btn" onclick="motorSR()">Steer Right</button>
+    <button class="btn" onclick="telemID()">Run AutoID Routine</button>
+    
+</body>
+<script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("state").innerHTML = this.responseText;}};
+            function ledOn() {xhttp.open("GET", "/on"); xhttp.send();}
+            function ledOff() {xhttp.open("GET", "/off"); xhttp.send();}
+            function motorFW() {xhttp.open("GET", "/motorfw"); xhttp.send();}
+            function motorSL() {xhttp.open("GET", "/motorsl"); xhttp.send();}
+            function motorSR() {xhttp.open("GET", "/motorsr"); xhttp.send();}
+            function motorRV() {xhttp.open("GET", "/motorrv"); xhttp.send();}
+            function telemID() {xhttp.open("GET", "/telemid"); xhttp.send();}
+</script>
+</html>
